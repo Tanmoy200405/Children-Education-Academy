@@ -1,11 +1,15 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import Navbar from '../layout/Navbar';
 import heroImage from '../../assets/heroimg.jpeg';
+import photo1 from '../../assets/photo1.jpg';
+import photo3 from '../../assets/photo3.jpg';
 
 const assets = {
   heroImage,
+  photo1,
+  photo3,
 };
 
 const fadeUp = {
@@ -29,7 +33,34 @@ const trustItems = [
   'Holistic Learning',
 ];
 
+const heroCards = [
+  {
+    image: assets.heroImage,
+    alt: 'Students learning happily at Children Education Academy',
+  },
+  {
+    image: assets.photo1,
+    alt: 'Children Education Academy campus activity',
+  },
+  {
+    image: assets.photo3,
+    alt: 'Students at Children Education Academy',
+  },
+];
+
 const Hero = () => {
+  const [activeCard, setActiveCard] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveCard((current) => (current + 1) % heroCards.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextCard = (activeCard + 1) % heroCards.length;
+
   return (
     <div className='min-h-screen overflow-hidden bg-[var(--primary-dark)]'>
       <Navbar />
@@ -123,12 +154,43 @@ const Hero = () => {
           >
             <div className='group relative w-full max-w-[430px] rounded-[24px] border border-white/16 bg-white/10 p-3 shadow-[0_30px_80px_rgba(0,0,0,0.24)] backdrop-blur-md sm:max-w-[560px] lg:max-w-[700px]'>
               <div className='absolute -inset-4 rounded-[32px] bg-[var(--accent)]/16 blur-2xl transition-opacity duration-300 group-hover:opacity-80' />
-              <div className='relative overflow-hidden rounded-[24px] bg-white/8'>
+              <div className='absolute -right-4 top-8 hidden h-[72%] w-[82%] rotate-3 overflow-hidden rounded-[24px] border border-white/12 bg-white/8 opacity-45 shadow-2xl sm:block'>
                 <img
-                  src={assets.heroImage}
-                  alt='Students learning happily at Children Education Academy'
-                  className='h-auto max-h-[460px] w-full object-contain transition-transform duration-500 group-hover:scale-[1.025] sm:max-h-[540px] lg:max-h-[calc(100vh-220px)]'
+                  src={heroCards[nextCard].image}
+                  alt=''
+                  className='h-full w-full object-cover'
                 />
+              </div>
+
+              <div className='relative aspect-[4/3] overflow-hidden rounded-[24px] bg-white/8'>
+                <AnimatePresence mode='wait'>
+                  <motion.img
+                    key={heroCards[activeCard].image}
+                    src={heroCards[activeCard].image}
+                    alt={heroCards[activeCard].alt}
+                    initial={{ opacity: 0, scale: 1.04, x: 28 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.98, x: -28 }}
+                    transition={{ duration: 0.65, ease: 'easeOut' }}
+                    className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]'
+                  />
+                </AnimatePresence>
+              </div>
+
+              <div className='relative mt-4 flex items-center justify-center gap-2'>
+                {heroCards.map((card, index) => (
+                  <button
+                    key={card.image}
+                    type='button'
+                    aria-label={`Show hero image ${index + 1}`}
+                    onClick={() => setActiveCard(index)}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                      activeCard === index
+                        ? 'w-8 bg-[var(--accent)]'
+                        : 'w-2.5 bg-white/35 hover:bg-white/70'
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </motion.div>

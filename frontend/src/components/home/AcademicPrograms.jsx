@@ -43,7 +43,7 @@ export default function AcademicPrograms() {
   };
 
   return (
-    <section className="w-full bg-[#FAF9F6] pt-[200px] lg:pt-[280px] pb-[120px] relative overflow-hidden">
+    <section className="w-full bg-[#FAF9F6] pt-12 sm:pt-16 lg:pt-20 pb-[120px] relative overflow-hidden">
       
       {/* Decorative Blur Orbs */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#14B8A6]/5 rounded-full blur-[120px] pointer-events-none" />

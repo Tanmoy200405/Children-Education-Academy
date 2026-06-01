@@ -151,7 +151,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="pt-2 pb-4">
-                <button className="w-full py-4 rounded-full border-2 border-[#14B8A6] text-[#14B8A6] font-semibold text-[15px] flex items-center justify-center gap-2 hover:bg-[#14B8A6] hover:text-white transition-colors">
+                <button className="w-full cursor-pointer py-4 rounded-full border-2 border-[#14B8A6] text-[#14B8A6] font-semibold text-[15px] flex items-center justify-center gap-2 hover:bg-[#14B8A6]  hover:text-white transition-colors">
                   Admission Enquiry
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </button>

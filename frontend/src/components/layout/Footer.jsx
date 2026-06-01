@@ -126,7 +126,7 @@ export default function Footer() {
       <div className="bg-[#084A52] border-t border-white/10">
         <Container>
           <div className="min-h-[70px] py-4 flex flex-col md:flex-row justify-between items-center text-white/70 text-[14px]">
-            <p className="text-center md:text-left font-medium">© 2026 Children Education Academy. All Rights Reserved.</p>
+            <p className="text-center md:text-left font-medium">© 2026 Children Education Academy. All Rights Reserved. | Designed by Tanmoy Mukherjee.</p>
             <div className="flex items-center gap-6 mt-4 md:mt-0 font-medium">
               <a href="#" className="hover:text-cyan-300 transition-colors">Privacy Policy</a>
               <span className="text-white/15 hidden md:inline">|</span>
