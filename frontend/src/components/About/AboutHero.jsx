@@ -4,7 +4,7 @@ import photo4 from '../../assets/photo4.jpg';
 
 export default function AboutHero() {
   return (
-    <section className='relative overflow-hidden bg-[var(--primary-dark)] px-6 pb-16 pt-[130px] sm:pt-[150px] lg:px-[80px] lg:pb-24'>
+    <section id='school-profile' className='relative overflow-hidden bg-[var(--primary-dark)] px-6 pb-16 pt-[130px] sm:pt-[150px] lg:px-[80px] lg:pb-24'>
       <div className='absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(31,199,212,0.24),transparent_34%),linear-gradient(135deg,var(--primary-dark),var(--primary)_58%,var(--primary-dark))]' />
       <div className='absolute right-[-140px] top-[16%] h-[360px] w-[360px] rounded-full bg-[var(--accent)]/15 blur-[120px]' />
       <div className='absolute bottom-[-160px] left-[-120px] h-[420px] w-[420px] rounded-full bg-white/10 blur-[130px]' />

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
 import logo from "../../assets/logo.jpg";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+  const [isMobileAcademicsOpen, setIsMobileAcademicsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -24,6 +26,35 @@ export default function Navbar() {
     { name: "Gallery", path: "/gallery" },
     { name: "Admissions", path: "/admissions" },
     { name: "Contact Us", path: "/contact" },
+  ];
+
+  const aboutLinks = [
+    { name: "School Profile", path: "/about#school-profile" },
+    { name: "Mission & Vision", path: "/about#mission-vision" },
+    { name: "Founders", path: "/about#founders" },
+    { name: "Chair Person", path: "/about#chair-person" },
+    { name: "Vice Chair Person", path: "/about#vice-chair-person" },
+    { name: "Principal's Message", path: "/about#principal-message" },
+    { name: "Vice Principal's Message", path: "/about#vice-principal-message" },
+    { name: "Managing Committee", path: "/about#managing-committee" },
+    { name: "Faculty", path: "/about#faculty" },
+    { name: "PTA", path: "/about#pta" },
+    { name: "Internal Committee", path: "/about#internal-committee" },
+  ];
+
+  const academicLinks = [
+    { name: "Academic Overview", path: "/academics#overview" },
+    { name: "Curriculum", path: "/academics#curriculum" },
+    { name: "Nursery, LKG & UKG", path: "/academics#junior-section" },
+    { name: "Primary School", path: "/academics#primary-school" },
+    { name: "Middle School", path: "/academics#middle-school" },
+    { name: "Secondary School", path: "/academics#secondary-school" },
+    { name: "Senior Secondary", path: "/academics#senior-secondary" },
+    { name: "Science Stream", path: "/academics#science-stream" },
+    { name: "Commerce Stream", path: "/academics#commerce-stream" },
+    { name: "Humanities Stream", path: "/academics#humanities-stream" },
+    { name: "Co-curricular Activities", path: "/academics#co-curricular" },
+    { name: "Exams & Assessment", path: "/academics#assessment" },
   ];
 
   return (
@@ -76,31 +107,88 @@ export default function Navbar() {
             <div className="flex items-center gap-6 xl:gap-8">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
+                const isAboutLink = link.name === "About Us";
+                const isAcademicsLink = link.name === "Academics";
+                const isAboutActive = location.pathname === "/about";
+                const isAcademicsActive = location.pathname === "/academics";
+
+                if (isAboutLink) {
+                  return (
+                    <div key={link.name} className="relative group py-4">
+                      <Link
+                        to={link.path}
+                        className={`relative flex items-center gap-1.5 rounded-md px-4 py-3 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
+                          isAboutActive
+                            ? 'bg-[#14B8A6]/10 text-[#14B8A6]'
+                            : 'text-[#0A5A63] hover:bg-[#14B8A6]/10 hover:text-[#14B8A6]'
+                        }`}
+                      >
+                        About
+                        <ChevronDown
+                          size={16}
+                          className="transition-transform duration-300 group-hover:rotate-180"
+                        />
+                      </Link>
+
+                      <div className="pointer-events-none absolute left-0 top-full z-[120] w-[286px] translate-y-3 rounded-[14px] border border-slate-100 bg-white py-4 opacity-0 shadow-[0_24px_70px_rgba(15,23,42,0.14)] transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+                        {aboutLinks.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            className="block px-6 py-3 text-[16px] font-medium text-slate-600 transition-colors duration-200 hover:bg-[#14B8A6]/10 hover:text-[#0A5A63]"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (isAcademicsLink) {
+                  return (
+                    <div key={link.name} className="relative group py-4">
+                      <Link
+                        to={link.path}
+                        className={`relative flex items-center gap-1.5 rounded-md px-4 py-3 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
+                          isAcademicsActive
+                            ? 'bg-[#14B8A6]/10 text-[#14B8A6]'
+                            : 'text-[#0A5A63] hover:bg-[#14B8A6]/10 hover:text-[#14B8A6]'
+                        }`}
+                      >
+                        Academics
+                        <ChevronDown
+                          size={16}
+                          className="transition-transform duration-300 group-hover:rotate-180"
+                        />
+                      </Link>
+
+                      <div className="pointer-events-none absolute left-0 top-full z-[120] w-[286px] translate-y-3 rounded-[14px] border border-slate-100 bg-white py-4 opacity-0 shadow-[0_24px_70px_rgba(15,23,42,0.14)] transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+                        {academicLinks.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            className="block px-6 py-3 text-[16px] font-medium text-slate-600 transition-colors duration-200 hover:bg-[#14B8A6]/10 hover:text-[#0A5A63]"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`relative font-semibold text-[14px] tracking-wide py-2 transition-all duration-300 hover:-translate-y-[2px] group ${isActive ? 'text-[#14B8A6]' : 'text-[#0A5A63] hover:text-[#14B8A6]'}`}
+                    className={`relative rounded-md px-4 py-3 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
+                      isActive
+                        ? 'bg-[#14B8A6]/10 text-[#14B8A6]'
+                        : 'text-[#0A5A63] hover:bg-[#14B8A6]/10 hover:text-[#14B8A6]'
+                    }`}
                   >
                     {link.name}
-                    
-                    {/* Hover Underline - Smooth Slider */}
-                    <span 
-                      className={`absolute bottom-0 left-1/2 h-[2px] bg-[#14B8A6] -translate-x-1/2 transition-all duration-300 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}
-                    />
-                    
-                    {/* Active Dot */}
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.span
-                          layoutId="activeNavDot"
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0 }}
-                          className="absolute -bottom-2 left-1/2 w-[5px] h-[5px] rounded-full bg-[#14B8A6] -translate-x-1/2 shadow-[0_0_8px_rgba(20,184,166,0.6)]"
-                        />
-                      )}
-                    </AnimatePresence>
                   </Link>
                 );
               })}
@@ -139,16 +227,92 @@ export default function Navbar() {
           >
             <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`text-[15px] font-semibold py-2 border-b border-gray-50 ${
-                    location.pathname === link.path ? 'text-[#14B8A6]' : 'text-[#0A5A63]'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
+                link.name === "About Us" ? (
+                  <div key={link.name} className="border-b border-gray-50">
+                    <button
+                      type="button"
+                      className={`flex w-full items-center justify-between py-2 text-left text-[15px] font-semibold ${
+                        location.pathname === "/about" ? 'text-[#14B8A6]' : 'text-[#0A5A63]'
+                      }`}
+                      onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
+                    >
+                      About
+                      <ChevronDown
+                        size={18}
+                        className={`transition-transform duration-300 ${isMobileAboutOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {isMobileAboutOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden pb-2"
+                        >
+                          {aboutLinks.map((item) => (
+                            <Link
+                              key={item.name}
+                              to={item.path}
+                              className="block border-b border-slate-100 px-4 py-2.5 text-[14px] font-medium text-slate-600 last:border-b-0 hover:bg-[#14B8A6]/10 hover:text-[#0A5A63]"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : link.name === "Academics" ? (
+                  <div key={link.name} className="border-b border-gray-50">
+                    <button
+                      type="button"
+                      className={`flex w-full items-center justify-between py-2 text-left text-[15px] font-semibold ${
+                        location.pathname === "/academics" ? 'text-[#14B8A6]' : 'text-[#0A5A63]'
+                      }`}
+                      onClick={() => setIsMobileAcademicsOpen(!isMobileAcademicsOpen)}
+                    >
+                      Academics
+                      <ChevronDown
+                        size={18}
+                        className={`transition-transform duration-300 ${isMobileAcademicsOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {isMobileAcademicsOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden pb-2"
+                        >
+                          {academicLinks.map((item) => (
+                            <Link
+                              key={item.name}
+                              to={item.path}
+                              className="block border-b border-slate-100 px-4 py-2.5 text-[14px] font-medium text-slate-600 last:border-b-0 hover:bg-[#14B8A6]/10 hover:text-[#0A5A63]"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`text-[15px] font-semibold py-2 border-b border-gray-50 ${
+                      location.pathname === link.path ? 'text-[#14B8A6]' : 'text-[#0A5A63]'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                )
               ))}
               <div className="pt-2 pb-4">
                 <button className="w-full cursor-pointer py-4 rounded-full border-2 border-[#14B8A6] text-[#14B8A6] font-semibold text-[15px] flex items-center justify-center gap-2 hover:bg-[#14B8A6]  hover:text-white transition-colors">

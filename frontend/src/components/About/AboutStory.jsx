@@ -18,7 +18,7 @@ const leaders = [
 
 export default function AboutStory() {
   return (
-    <section className='bg-white px-6 py-16 sm:py-20 lg:px-[80px] lg:py-24'>
+    <section id='founders' className='bg-white px-6 py-16 sm:py-20 lg:px-[80px] lg:py-24'>
       <div className='mx-auto max-w-[1400px]'>
         <div className='grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16'>
           <motion.div

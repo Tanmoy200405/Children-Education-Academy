@@ -46,7 +46,7 @@ const features = [
 
 export default function HolisticFeatures() {
   return (
-    <section className='bg-[#F8FAFC] px-6 py-16 sm:py-20 lg:px-[80px] lg:py-24'>
+    <section id='faculty' className='bg-[#F8FAFC] px-6 py-16 sm:py-20 lg:px-[80px] lg:py-24'>
       <div className='mx-auto max-w-[1400px]'>
         <div className='mx-auto mb-12 max-w-[760px] text-center'>
           <span className='text-xs font-bold uppercase tracking-[0.28em] text-[var(--accent)]'>

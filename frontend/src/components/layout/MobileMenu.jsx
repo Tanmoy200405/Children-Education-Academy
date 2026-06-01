@@ -1,11 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Home, Info, BookOpen, Image as ImageIcon, GraduationCap, Phone, Mail, Globe, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { X, Home, Info, BookOpen, Image as ImageIcon, GraduationCap, Phone, Mail, Globe, ArrowRight, ChevronDown } from "lucide-react";
 import NavbarCTA from "../common/NavbarCTA";
 import logo from "../../assets/logo.jpg";
 
 export default function MobileMenu({ isOpen, onClose }) {
   const location = useLocation();
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isAcademicsOpen, setIsAcademicsOpen] = useState(false);
 
   const links = [
     { name: "Home", path: "/", icon: <Home size={20} /> },
@@ -14,6 +17,35 @@ export default function MobileMenu({ isOpen, onClose }) {
     { name: "Gallery", path: "/gallery", icon: <ImageIcon size={20} /> },
     { name: "Admissions", path: "/admissions", icon: <GraduationCap size={20} /> },
     { name: "Contact", path: "/contact", icon: <Phone size={20} /> }
+  ];
+
+  const aboutLinks = [
+    { name: "School Profile", path: "/about#school-profile" },
+    { name: "Mission & Vision", path: "/about#mission-vision" },
+    { name: "Founders", path: "/about#founders" },
+    { name: "Chair Person", path: "/about#chair-person" },
+    { name: "Vice Chair Person", path: "/about#vice-chair-person" },
+    { name: "Principal's Message", path: "/about#principal-message" },
+    { name: "Vice Principal's Message", path: "/about#vice-principal-message" },
+    { name: "Managing Committee", path: "/about#managing-committee" },
+    { name: "Faculty", path: "/about#faculty" },
+    { name: "PTA", path: "/about#pta" },
+    { name: "Internal Committee", path: "/about#internal-committee" },
+  ];
+
+  const academicLinks = [
+    { name: "Academic Overview", path: "/academics#overview" },
+    { name: "Curriculum", path: "/academics#curriculum" },
+    { name: "Nursery, LKG & UKG", path: "/academics#junior-section" },
+    { name: "Primary School", path: "/academics#primary-school" },
+    { name: "Middle School", path: "/academics#middle-school" },
+    { name: "Secondary School", path: "/academics#secondary-school" },
+    { name: "Senior Secondary", path: "/academics#senior-secondary" },
+    { name: "Science Stream", path: "/academics#science-stream" },
+    { name: "Commerce Stream", path: "/academics#commerce-stream" },
+    { name: "Humanities Stream", path: "/academics#humanities-stream" },
+    { name: "Co-curricular Activities", path: "/academics#co-curricular" },
+    { name: "Exams & Assessment", path: "/academics#assessment" },
   ];
 
   return (
@@ -49,6 +81,117 @@ export default function MobileMenu({ isOpen, onClose }) {
             <div className="flex flex-col p-6 gap-2 overflow-y-auto flex-1">
               {links.map((link, i) => {
                 const isActive = location.pathname === link.path;
+                const isAboutLink = link.name === "About Us";
+                const isAcademicsLink = link.name === "Academics";
+
+                if (isAboutLink) {
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.05 }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setIsAboutOpen(!isAboutOpen)}
+                        className={`flex h-[56px] w-full items-center justify-between rounded-xl px-4 transition-all duration-300 group ${
+                          location.pathname === "/about"
+                            ? 'bg-[#1FC7D4]/10 text-[#006D77] font-semibold'
+                            : 'text-gray-600 hover:bg-gray-50 hover:text-[#1FC7D4] font-medium'
+                        }`}
+                      >
+                        <div className="flex items-center gap-4">
+                          <span className={`${location.pathname === "/about" ? 'text-[#1FC7D4]' : 'text-gray-400 group-hover:text-[#1FC7D4]'}`}>
+                            {link.icon}
+                          </span>
+                          <span className="font-['Outfit'] text-[16px]">About</span>
+                        </div>
+                        <ChevronDown
+                          size={18}
+                          className={`transition-transform duration-300 ${isAboutOpen ? 'rotate-180 text-[#1FC7D4]' : 'text-gray-300'}`}
+                        />
+                      </button>
+
+                      <AnimatePresence>
+                        {isAboutOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="overflow-hidden pl-10 pr-2"
+                          >
+                            {aboutLinks.map((item) => (
+                              <Link
+                                key={item.name}
+                                to={item.path}
+                                onClick={onClose}
+                                className="block border-b border-gray-100 px-4 py-2.5 text-[14px] font-medium text-gray-600 last:border-b-0 hover:bg-[#1FC7D4]/10 hover:text-[#006D77]"
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
+                if (isAcademicsLink) {
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.05 }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setIsAcademicsOpen(!isAcademicsOpen)}
+                        className={`flex h-[56px] w-full items-center justify-between rounded-xl px-4 transition-all duration-300 group ${
+                          location.pathname === "/academics"
+                            ? 'bg-[#1FC7D4]/10 text-[#006D77] font-semibold'
+                            : 'text-gray-600 hover:bg-gray-50 hover:text-[#1FC7D4] font-medium'
+                        }`}
+                      >
+                        <div className="flex items-center gap-4">
+                          <span className={`${location.pathname === "/academics" ? 'text-[#1FC7D4]' : 'text-gray-400 group-hover:text-[#1FC7D4]'}`}>
+                            {link.icon}
+                          </span>
+                          <span className="font-['Outfit'] text-[16px]">Academics</span>
+                        </div>
+                        <ChevronDown
+                          size={18}
+                          className={`transition-transform duration-300 ${isAcademicsOpen ? 'rotate-180 text-[#1FC7D4]' : 'text-gray-300'}`}
+                        />
+                      </button>
+
+                      <AnimatePresence>
+                        {isAcademicsOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="overflow-hidden pl-10 pr-2"
+                          >
+                            {academicLinks.map((item) => (
+                              <Link
+                                key={item.name}
+                                to={item.path}
+                                onClick={onClose}
+                                className="block border-b border-gray-100 px-4 py-2.5 text-[14px] font-medium text-gray-600 last:border-b-0 hover:bg-[#1FC7D4]/10 hover:text-[#006D77]"
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
                 return (
                   <motion.div
                     key={link.name}

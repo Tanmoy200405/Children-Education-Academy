@@ -48,7 +48,7 @@ function ValueCard({ title, icon: Icon, items, delay }) {
 
 export default function MissionVision() {
   return (
-    <section className='relative overflow-hidden bg-[var(--primary-dark)] px-6 py-16 sm:py-20 lg:px-[80px] lg:py-24'>
+    <section id='mission-vision' className='relative overflow-hidden bg-[var(--primary-dark)] px-6 py-16 sm:py-20 lg:px-[80px] lg:py-24'>
       <div className='absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(31,199,212,0.2),transparent_34%),radial-gradient(circle_at_88%_72%,rgba(184,243,247,0.14),transparent_30%)]' />
       <div className='relative z-10 mx-auto max-w-[1400px]'>
         <div className='mx-auto mb-12 max-w-[760px] text-center'>
