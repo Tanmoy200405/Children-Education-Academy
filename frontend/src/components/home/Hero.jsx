@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Navbar from '../layout/Navbar';
 import heroImage from '../../assets/heroimg.jpeg';
 import photo1 from '../../assets/photo1.jpg';
@@ -118,14 +119,14 @@ const Hero = () => {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               className='flex w-full flex-col gap-4 pt-1 sm:w-auto sm:flex-row'
             >
-              <button className='group flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)] px-8 py-4 text-base font-bold text-[var(--primary-dark)] shadow-[0_16px_34px_rgba(31,199,212,0.28)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_44px_rgba(31,199,212,0.34)] sm:w-auto'>
+              <Link to="/academics" className='group flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)] px-8 py-4 text-base font-bold text-[var(--primary-dark)] shadow-[0_16px_34px_rgba(31,199,212,0.28)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_44px_rgba(31,199,212,0.34)] sm:w-auto'>
                 Explore Academics
                 <ArrowRight size={18} className='transition-transform duration-300 group-hover:translate-x-1' />
-              </button>
+              </Link>
 
-              <button className='w-full rounded-full border border-white/45 bg-white/10 px-8 py-4 text-base font-bold text-white shadow-[0_14px_34px_rgba(0,0,0,0.14)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white hover:bg-white hover:text-[var(--primary-dark)] sm:w-auto'>
+              <Link to="/contact" className='flex w-full items-center justify-center rounded-full border border-white/45 bg-white/10 px-8 py-4 text-base font-bold text-white shadow-[0_14px_34px_rgba(0,0,0,0.14)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white hover:bg-white hover:text-[var(--primary-dark)] sm:w-auto'>
                 Book Campus Tour
-              </button>
+              </Link>
             </motion.div>
 
             <motion.div

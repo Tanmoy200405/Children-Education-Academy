@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function AdmissionsCTA() {
   return (
@@ -13,10 +14,10 @@ export default function AdmissionsCTA() {
         <p className='mx-auto mt-5 max-w-[620px] text-base font-medium leading-8 text-white/84 sm:text-lg'>
           Begin the admission process and discover how CEA helps every learner grow with confidence.
         </p>
-        <button className='group mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-[var(--primary-dark)] shadow-[0_18px_42px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1'>
+        <Link to="/admissions" className='group mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-[var(--primary-dark)] shadow-[0_18px_42px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1'>
           Apply Now
           <ArrowRight size={18} className='transition-transform duration-300 group-hover:translate-x-1' />
-        </button>
+        </Link>
       </div>
     </section>
   );

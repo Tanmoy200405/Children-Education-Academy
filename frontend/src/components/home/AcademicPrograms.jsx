@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Atom, Microscope, GraduationCap } from "lucide-react";
 import photo4 from "../../assets/photo4.jpg";
 import photo5 from "../../assets/photo5.jpg";
@@ -144,11 +145,11 @@ export default function AcademicPrograms() {
                   {prog.desc}
                 </p>
                 
-                <div className="flex items-center text-[#14B8A6] font-bold text-[14.5px] group-hover:text-[#0EA5E9] transition-colors mt-auto relative w-fit">
+                <Link to="/academics" className="flex items-center text-[#14B8A6] font-bold text-[14.5px] group-hover:text-[#0EA5E9] transition-colors mt-auto relative w-fit">
                   Learn More 
                   <ArrowRight size={16} className="ml-2 transform group-hover:translate-x-1.5 transition-transform duration-300" />
                   <span className="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-gradient-to-r from-[#14B8A6] to-[#0EA5E9] transition-all duration-300 group-hover:w-full"></span>
-                </div>
+                </Link>
               </div>
 
             </motion.div>

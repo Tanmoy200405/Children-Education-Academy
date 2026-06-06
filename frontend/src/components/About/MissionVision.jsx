@@ -2,21 +2,21 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Eye, Target } from 'lucide-react';
 
 const mission = [
-  'Realize full potential in curricular and co-curricular activities.',
+  'Realize their full potential in curricular and co-curricular activities.',
   'Uphold integrity and ethics.',
   'Cultivate a spirit of inquiry and ingenuity.',
   'Boost self-confidence and self-discipline.',
-  'Inculcate 21st century life skills to face the world with fortitude.',
-  'Transform students into responsible and environmentally aware citizens.',
+  'Inculcate the 21st century life skills enabling them to face the world with fortitude.',
+  'Transform the student into a responsible citizen and environmentally aware.',
 ];
 
 const vision = [
-  'Impart knowledge and values while nurturing talent, enthusiasm and creativity.',
-  'Provide a common programme of education for children.',
-  'Pursue excellence and set the pace in school education.',
-  'Promote experimentation and innovation in education.',
-  'Develop national integration and a sense of Indianness among children.',
-  'Provide and maintain a conducive atmosphere for learning.',
+  'CEA believes in imparting knowledge/values and nurturing the talent, enthusiasm and creativity of its students for seeking excellence through high-quality educational endeavours.',
+  'To cater to the educational needs of children by providing a common programme of education.',
+  'To pursue excellence and set the pace in the field of school education.',
+  'To initiate and promote experimentation and innovations in education in collaboration with other bodies like CBSE and NCERT.',
+  'To develop the spirit of national integration and create a sense of Indianness among children.',
+  'To provide, establish, endow, maintain, control and manage our school for the children and do all acts and things necessary for providing a conducive atmosphere in schools.',
 ];
 
 function ValueCard({ title, icon: Icon, items, delay }) {
@@ -35,10 +35,10 @@ function ValueCard({ title, icon: Icon, items, delay }) {
         <h3 className='text-[28px] font-black'>{title}</h3>
       </div>
       <div className='space-y-4'>
-        {items.map((item) => (
-          <div key={item} className='flex gap-3'>
+        {items.map((item, index) => (
+          <div key={index} className='flex gap-3'>
             <CheckCircle2 size={19} className='mt-1 shrink-0 text-[var(--accent-light)]' />
-            <p className='text-[15px] font-medium leading-7 text-white/84'>{item}</p>
+            <p className='text-[14px] sm:text-[15px] font-medium leading-7 text-white/84'>{item}</p>
           </div>
         ))}
       </div>
@@ -56,7 +56,7 @@ export default function MissionVision() {
             Mission and Vision
           </span>
           <h2 className='mt-3 text-[32px] font-black leading-[1.1] text-white sm:text-[42px] lg:text-[54px]'>
-            Creating a Peaceful, Stimulating, and Future-Ready Learning Environment
+            Creating a Peaceful, Stimulating, and Future-Ready Environment
           </h2>
         </div>
 

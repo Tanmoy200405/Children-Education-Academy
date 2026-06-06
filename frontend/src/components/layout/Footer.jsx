@@ -84,15 +84,15 @@ export default function Footer() {
             <ul className="flex flex-col gap-6">
               <li className="flex items-start gap-4">
                 <MapPin size={20} className="text-[#14B8A6] shrink-0 mt-0.5" />
-                <span className="text-[15px] font-medium text-white/80 leading-relaxed">123 Education Avenue,<br/>Kolkata, West Bengal - 700001</span>
+                <span className="text-[15px] font-medium text-white/80 leading-relaxed">{import.meta.env.VITE_CONTACT_ADDRESS}</span>
               </li>
               <li className="flex items-start gap-4 group cursor-pointer">
                 <Phone size={20} className="text-[#14B8A6] shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                <a href="tel:+919876543210" className="text-[15px] font-medium text-white/80 group-hover:text-cyan-300 transition-colors">+91 98765 43210</a>
+                <a href={`tel:+91${import.meta.env.VITE_CONTACT_PHONE1}`} className="text-[15px] font-medium text-white/80 group-hover:text-cyan-300 transition-colors">+91 {import.meta.env.VITE_CONTACT_PHONE1}</a>
               </li>
               <li className="flex items-start gap-4 group cursor-pointer">
                 <Mail size={20} className="text-[#14B8A6] shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                <a href="mailto:info@cea.edu.in" className="text-[15px] font-medium text-white/80 group-hover:text-cyan-300 transition-colors break-all">info@cea.edu.in</a>
+                <a href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} className="text-[15px] font-medium text-white/80 group-hover:text-cyan-300 transition-colors break-all">{import.meta.env.VITE_CONTACT_EMAIL}</a>
               </li>
               <li className="flex items-start gap-4">
                 <Clock size={20} className="text-[#14B8A6] shrink-0 mt-0.5" />

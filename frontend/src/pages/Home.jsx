@@ -1,4 +1,5 @@
 import Hero from "../components/home/Hero";
+import NoticeTicker from "../components/home/NoticeTicker";
 import AcademicPrograms from "../components/home/AcademicPrograms";
 import StudentActivities from "../components/home/StudentActivities";
 import WhyParentsChooseUs from "../components/home/WhyParentsChooseUs";
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <NoticeTicker />
       <AcademicPrograms />
       <StudentActivities />
       <WhyParentsChooseUs />

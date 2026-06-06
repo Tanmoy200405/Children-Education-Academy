@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, Facebook, Instagram, User } from "lucide-react";
 import logo from "../../assets/logo.jpg";
 
 export default function Navbar() {
@@ -29,32 +29,25 @@ export default function Navbar() {
   ];
 
   const aboutLinks = [
-    { name: "School Profile", path: "/about#school-profile" },
-    { name: "Mission & Vision", path: "/about#mission-vision" },
-    { name: "Founders", path: "/about#founders" },
-    { name: "Chair Person", path: "/about#chair-person" },
-    { name: "Vice Chair Person", path: "/about#vice-chair-person" },
-    { name: "Principal's Message", path: "/about#principal-message" },
-    { name: "Vice Principal's Message", path: "/about#vice-principal-message" },
-    { name: "Managing Committee", path: "/about#managing-committee" },
-    { name: "Faculty", path: "/about#faculty" },
-    { name: "PTA", path: "/about#pta" },
-    { name: "Internal Committee", path: "/about#internal-committee" },
+    { name: "School Profile", path: "/about/school-profile" },
+    { name: "Mission & Vision", path: "/about/mission-vision" },
+    { name: "Principal's Message", path: "/about/principal-message" },
+    { name: "Features", path: "/about/features" },
   ];
 
   const academicLinks = [
-    { name: "Academic Overview", path: "/academics#overview" },
-    { name: "Curriculum", path: "/academics#curriculum" },
-    { name: "Nursery, LKG & UKG", path: "/academics#junior-section" },
-    { name: "Primary School", path: "/academics#primary-school" },
-    { name: "Middle School", path: "/academics#middle-school" },
-    { name: "Secondary School", path: "/academics#secondary-school" },
-    { name: "Senior Secondary", path: "/academics#senior-secondary" },
-    { name: "Science Stream", path: "/academics#science-stream" },
-    { name: "Commerce Stream", path: "/academics#commerce-stream" },
-    { name: "Humanities Stream", path: "/academics#humanities-stream" },
-    { name: "Co-curricular Activities", path: "/academics#co-curricular" },
-    { name: "Exams & Assessment", path: "/academics#assessment" },
+    { name: "Academic Overview", path: "/academics/overview" },
+    { name: "Curriculum", path: "/academics/curriculum" },
+    { name: "Nursery, LKG & UKG", path: "/academics/junior-section" },
+    { name: "Primary School", path: "/academics/primary-school" },
+    { name: "Middle School", path: "/academics/middle-school" },
+    { name: "Secondary School", path: "/academics/secondary-school" },
+    { name: "Senior Secondary", path: "/academics/senior-secondary" },
+    { name: "Science Stream", path: "/academics/science-stream" },
+    { name: "Commerce Stream", path: "/academics/commerce-stream" },
+    { name: "Humanities Stream", path: "/academics/humanities-stream" },
+    { name: "Co-curricular Activities", path: "/academics/co-curricular" },
+    { name: "Exams & Assessment", path: "/academics/assessment" },
   ];
 
   return (
@@ -63,18 +56,24 @@ export default function Navbar() {
       <div className="hidden lg:block bg-[#0A5A63] text-white/95 text-[13px] font-medium py-2">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex justify-between items-center">
           <div className="flex gap-6">
-            <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-white transition-colors">
-              <Phone size={14} /> +91 98765 43210
+            <a href={`tel:+91${import.meta.env.VITE_CONTACT_PHONE1}`} className="flex items-center gap-2 hover:text-white transition-colors">
+              <Phone size={14} /> +91 {import.meta.env.VITE_CONTACT_PHONE1}
             </a>
-            <a href="mailto:info@cea.edu.in" className="flex items-center gap-2 hover:text-white transition-colors">
-              <Mail size={14} /> info@cea.edu.in
+            <a href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} className="flex items-center gap-2 hover:text-white transition-colors">
+              <Mail size={14} /> {import.meta.env.VITE_CONTACT_EMAIL}
             </a>
           </div>
-          <div className="flex gap-6">
-            <Link to="/careers" className="hover:text-white transition-colors">Careers</Link>
-            <Link to="/news" className="hover:text-white transition-colors">News & Events</Link>
-            <Link to="/alumni" className="hover:text-white transition-colors">Alumni</Link>
-            <Link to="/parent-login" className="hover:text-white transition-colors">Parent Login</Link>
+          <div className="flex gap-6 items-center">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Facebook size={14} /> Facebook
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Instagram size={14} /> Instagram
+            </a>
+            <div className="w-[1px] h-4 bg-white/20 mx-1"></div>
+            <Link to="/admin-login" className="flex items-center gap-1.5 hover:text-white transition-colors font-bold text-[#1FC7D4]">
+              <User size={14} /> Admin Login
+            </Link>
           </div>
         </div>
       </div>
@@ -197,12 +196,12 @@ export default function Navbar() {
 
           {/* Right CTA - Connected & Premium Style */}
           <div className="hidden lg:flex items-center shrink-0">
-            <button className="flex items-center gap-2 px-2 py-2 border-2 text-[#14B8A6] border-[#14B8A6] rounded-full font-semibold text-[15px] hover:bg-[#14B8A6] hover:text-white transition-colors">
+            <Link to="/admissions" className="flex items-center gap-2 px-2 py-2 border-2 text-[#14B8A6] border-[#14B8A6] rounded-full font-semibold text-[15px] hover:bg-[#14B8A6] hover:text-white transition-colors group">
               Admission Enquiry
               <span className="transform group-hover:translate-x-1 transition-transform duration-300">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </span>
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -315,10 +314,10 @@ export default function Navbar() {
                 )
               ))}
               <div className="pt-2 pb-4">
-                <button className="w-full cursor-pointer py-4 rounded-full border-2 border-[#14B8A6] text-[#14B8A6] font-semibold text-[15px] flex items-center justify-center gap-2 hover:bg-[#14B8A6]  hover:text-white transition-colors">
+                <Link to="/admissions" onClick={() => setIsMobileMenuOpen(false)} className="w-full cursor-pointer py-4 rounded-full border-2 border-[#14B8A6] text-[#14B8A6] font-semibold text-[15px] flex items-center justify-center gap-2 hover:bg-[#14B8A6]  hover:text-white transition-colors group">
                   Admission Enquiry
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>

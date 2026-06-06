@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, CalendarDays } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import photo15 from '../../assets/photo15.jpg';
 import photo18 from '../../assets/photo18.jpg';
 import photo20 from '../../assets/photo20.jpg';
@@ -38,10 +39,10 @@ export default function LatestNewsEvents() {
               What Is Happening at CEA
             </h2>
           </div>
-          <button className='group flex w-fit items-center gap-2 rounded-full border border-[var(--primary)]/20 bg-white px-6 py-3 text-sm font-bold text-[var(--primary)] shadow-[0_12px_28px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1'>
+          <Link to="/news" className='group flex w-fit items-center gap-2 rounded-full border border-[var(--primary)]/20 bg-white px-6 py-3 text-sm font-bold text-[var(--primary)] shadow-[0_12px_28px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1'>
             View All
             <ArrowRight size={16} className='transition-transform duration-300 group-hover:translate-x-1' />
-          </button>
+          </Link>
         </div>
 
         <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
@@ -72,10 +73,10 @@ export default function LatestNewsEvents() {
                 <p className='mb-6 text-[15px] font-medium leading-7 text-[var(--text-secondary)]'>
                   {item.desc}
                 </p>
-                <button className='group/link flex items-center gap-2 text-sm font-bold text-[var(--accent)]'>
+                <Link to="/news" className='group/link flex items-center gap-2 text-sm font-bold text-[var(--accent)]'>
                   Read More
                   <ArrowRight size={16} className='transition-transform duration-300 group-hover/link:translate-x-1' />
-                </button>
+                </Link>
               </div>
             </motion.article>
           ))}

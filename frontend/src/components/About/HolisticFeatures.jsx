@@ -1,45 +1,55 @@
 import { motion } from 'framer-motion';
-import { Camera, Droplets, HeartPulse, Lightbulb, Medal, Shield, Sparkles, UsersRound } from 'lucide-react';
+import { Camera, Droplets, HeartPulse, Lightbulb, Medal, Shield, Sparkles, UsersRound, BookHeart, SmilePlus } from 'lucide-react';
 
 const features = [
   {
     title: 'Modern Pedagogy',
-    text: 'CEA creates a teaching-learning environment rooted in the belief that education manifests the perfection already present in every child.',
+    text: 'Established in 2012, CEA aims to create a teaching learning environment for the school believes that education is the manifestation of perfection present in man.',
     icon: Lightbulb,
   },
   {
     title: 'Independent Learning Model',
-    text: 'Teachers act as preceptors, encouraging students to self-monitor, collaborate, and set personal learning goals.',
+    text: 'Teachers act as preceptors, encouraging students to self-monitor, collaborate with peers on group tasks and set personal learning goals.',
     icon: Sparkles,
   },
   {
     title: 'Erudite Faculty',
-    text: 'Experienced and competent teachers ensure individual attention and steady guidance for every learner.',
+    text: 'The school features a talented team of experienced and competent teachers and maintains a student to teacher ratio ensuring individual attention.',
     icon: UsersRound,
   },
   {
     title: 'Extracurricular Engagement',
-    text: 'Inter-school and inter-house competitions help students become responsible, expressive, and future-ready.',
+    text: 'Active participation in inter-school competitions and inter-house competitions contributes to making the students responsible and future-ready.',
     icon: Medal,
   },
   {
-    title: 'Health and Hygiene',
-    text: 'Annual medical check-ups, health cards, hygiene guidance, and workshops support student well-being.',
+    title: 'Value-Based Education',
+    text: 'Each day begins with morning assemblies and includes regular value education classes to inculcate honesty, empathy and social responsibility.',
+    icon: BookHeart,
+  },
+  {
+    title: 'Health Tracking',
+    text: 'Annual medical check-ups are conducted for every student and a Health Card is issued annually to keep parents informed of their physical well-being.',
     icon: HeartPulse,
   },
   {
-    title: 'Safe Water and Food',
-    text: 'Potable drinking water and a hygienic canteen serving healthy vegetarian food support daily care.',
+    title: 'Personal Hygiene',
+    text: 'Students are regularly educated on personal hygiene. The school also conducts specialized workshops on various topics like positive habits, Menstrual Hygiene, etc.',
+    icon: SmilePlus,
+  },
+  {
+    title: 'Safe Water & Food',
+    text: 'The school provides potable drinking water and a hygienic canteen that serves healthy and nutritious vegetarian food.',
     icon: Droplets,
   },
   {
     title: 'Surveillance',
-    text: 'The campus is monitored through CCTV, with safety supported in transport through GPS, CCTV, and RFID cards.',
+    text: 'The campus is under 24×7 CCTV monitoring. Safety is also ensured in the bus service through GPS tracking, CCTV cameras and RFID cards.',
     icon: Camera,
   },
   {
     title: 'Controlled Access',
-    text: 'Security guards monitor entry, visitors are logged, and parents use escort cards for student pickup.',
+    text: 'Entry is strictly monitored by security guards. Visitors are logged and parents are required to carry an Escort Card for student pickup.',
     icon: Shield,
   },
 ];
@@ -66,17 +76,17 @@ export default function HolisticFeatures() {
               key={feature.title}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.04 }}
-              className='group rounded-[24px] border border-slate-100 bg-white p-6 shadow-[0_14px_42px_rgba(15,23,42,0.05)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(20,184,166,0.14)]'
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.5, delay: (index % 4) * 0.08 }}
+              className='group rounded-[24px] border border-slate-100 bg-white p-6 shadow-[0_14px_42px_rgba(15,23,42,0.05)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(20,184,166,0.14)] flex flex-col'
             >
               <div className='mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--accent)]/14 text-[var(--primary)] transition-transform duration-300 group-hover:scale-110'>
                 <feature.icon size={23} />
               </div>
-              <h3 className='mb-3 text-xl font-extrabold text-[var(--primary-dark)]'>
+              <h3 className='mb-3 text-[19px] font-extrabold text-[var(--primary-dark)]'>
                 {feature.title}
               </h3>
-              <p className='text-[14.5px] font-medium leading-7 text-[var(--text-secondary)]'>
+              <p className='text-[14.5px] font-medium leading-7 text-[var(--text-secondary)] flex-grow'>
                 {feature.text}
               </p>
             </motion.article>

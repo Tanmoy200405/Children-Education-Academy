@@ -5,13 +5,13 @@ const leaders = [
   {
     name: 'Mr. S. Yaser Ahmed',
     role: 'President and Founder Principal',
-    text: 'He is committed to academic excellence, innovation, and value-based learning that prepares students for modern life.',
+    text: 'He is committed to promoting academic excellence, innovation and value-based learning essential for today’s modern life.',
     icon: Award,
   },
   {
     name: 'Mrs. Sufia Naaz',
     role: 'Co-Founder and Vice-Principal',
-    text: 'With more than 15 years of experience in education, she mentors students with inspiration, motivation, and a strong foundation for achievement.',
+    text: 'An expert in education with over 15 years of experience. Her mentorship, inspiration, and motivation provide our students with a great platform. She infuses children with the target of securing and achieving the best out of them.',
     icon: UserRoundCheck,
   },
 ];
@@ -28,20 +28,23 @@ export default function AboutStory() {
             transition={{ duration: 0.55 }}
           >
             <span className='text-xs font-bold uppercase tracking-[0.28em] text-[var(--accent)]'>
-              Our Story
+              About Us
             </span>
             <h2 className='mt-3 text-[32px] font-black leading-[1.1] text-[var(--primary-dark)] sm:text-[42px] lg:text-[54px]'>
-              Built to Nurture Excellence and Character
+              Nurturing Academic Excellence & Innovation
             </h2>
             <p className='mt-6 text-base font-medium leading-8 text-[var(--text-secondary)] sm:text-lg'>
-              CEA upholds the belief that a safe and secure environment is necessary for children to flourish. The school aims to promote academic strength, confidence, integrity, and the values needed to grow as responsible citizens.
+              Children Education Academy is a co-educational ICSE secondary school in Maheshtala, Kolkata, established in the year 2012. The school offers a syllabus aligned with NEP starting from classes NURSERY, LKG, UKG till class X. For ISC classes XI and XII, the school offers a curriculum in Science, Commerce, and Humanities streams, designed to prepare students for academic excellence and beyond.
+            </p>
+            <p className='mt-4 text-base font-medium leading-8 text-[var(--text-secondary)] sm:text-lg'>
+              CEA is located at Memanpur, Maheshtala in Kolkata. We uphold the notion that a safe and secure environment is necessary to flourish globally, with an aim to promote the inculcation of potency and rectitude.
             </p>
             <div className='mt-7 rounded-[24px] border border-slate-100 bg-[#F8FAFC] p-6'>
               <div className='mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--accent)]/15 text-[var(--primary)]'>
                 <BookOpenCheck size={24} />
               </div>
               <p className='text-[15px] font-semibold leading-7 text-[var(--primary-dark)]'>
-                The school offers air-conditioned classrooms for the junior section and activities such as games, karate, sports, elocution, debate, quiz, drawing competitions, and cultural programs.
+                The school offers air-conditioned classrooms for our junior section (Nursery, LKG, UKG). It offers activities such as Games, Karate, Sports, Elocution, Debate, Quiz, Drawing Competition, Cultural Programs, etc.
               </p>
             </div>
           </motion.div>

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Music, Palette, Trophy, Users } from 'lucide-react';
 import photo8 from '../../assets/photo8.jpg';
 import photo9 from '../../assets/photo9.jpg';
@@ -118,10 +119,10 @@ const StudentActivities = () => {
                 <p className='mb-6 flex-1 text-[15px] font-medium leading-7 text-[var(--text-secondary)]'>
                   {activity.desc}
                 </p>
-                <button className='group/link flex w-fit items-center gap-2 text-sm font-bold text-[var(--accent)]'>
+                <Link to="/gallery" className='group/link flex w-fit items-center gap-2 text-sm font-bold text-[var(--accent)]'>
                   Explore More
                   <ArrowRight size={16} className='transition-transform duration-300 group-hover/link:translate-x-1' />
-                </button>
+                </Link>
               </div>
             </motion.article>
           ))}
