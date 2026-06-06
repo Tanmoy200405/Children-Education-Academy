@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail, ChevronDown, Facebook, Instagram, User } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, User } from "lucide-react";
 import logo from "../../assets/logo.jpg";
 
 export default function Navbar() {
@@ -65,10 +65,10 @@ export default function Navbar() {
           </div>
           <div className="flex gap-6 items-center">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Facebook size={14} /> Facebook
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Facebook
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Instagram size={14} /> Instagram
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> Instagram
             </a>
             <div className="w-[1px] h-4 bg-white/20 mx-1"></div>
             <Link to="/admin-login" className="flex items-center gap-1.5 hover:text-white transition-colors font-bold text-[#1FC7D4]">
