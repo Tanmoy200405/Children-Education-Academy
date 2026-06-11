@@ -1,13 +1,22 @@
 import { Bell } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function NoticeTicker() {
-  const notices = [
-    "Admission open for Session 2026-2027. Apply now!",
-    "Annual Sports Day scheduled for January 18, 2026.",
-    "Science Exhibition will be held on February 07, 2026.",
-    "Parent-Teacher meeting for all classes on the coming Saturday.",
-  ];
+  const [notices, setNotices] = useState([
+    { _id: '1', title: "Admission open for Session 2026-2027. Apply now!" }
+  ]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/notices")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.data.length > 0) {
+          setNotices(data.data);
+        }
+      })
+      .catch((err) => console.log("Failed to fetch notices", err));
+  }, []);
 
   return (
     <div className="bg-[#14B8A6]/10 border-b border-[#14B8A6]/20 py-2">
@@ -21,10 +30,10 @@ export default function NoticeTicker() {
         {/* Scrolling Ticker */}
         <div className="overflow-hidden relative ml-4 flex-1">
           <div className="animate-marquee whitespace-nowrap flex items-center gap-12">
-            {[...notices, ...notices, ...notices].map((notice, idx) => (
+            {notices.map((notice, idx) => (
               <span key={idx} className="text-[#0A5A63] font-medium text-[15px] flex items-center gap-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] inline-block"></span>
-                <Link to="/news" className="hover:text-[#14B8A6] transition-colors">{notice}</Link>
+                <Link to="/news" className="hover:text-[#14B8A6] transition-colors">{notice.title}</Link>
               </span>
             ))}
           </div>

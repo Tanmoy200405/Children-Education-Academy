@@ -1,18 +1,23 @@
 import { motion } from 'framer-motion';
 import { Award, BookOpenCheck, UserRoundCheck } from 'lucide-react';
 
+import principalSir from '../../assets/principal-sir.jpeg';
+import principalMaam from '../../assets/principal-maam.jpeg';
+
 const leaders = [
   {
     name: 'Mr. S. Yaser Ahmed',
     role: 'President and Founder Principal',
     text: 'He is committed to promoting academic excellence, innovation and value-based learning essential for today’s modern life.',
     icon: Award,
+    photo: principalSir,
   },
   {
     name: 'Mrs. Sufia Naaz',
     role: 'Co-Founder and Vice-Principal',
     text: 'An expert in education with over 15 years of experience. Her mentorship, inspiration, and motivation provide our students with a great platform. She infuses children with the target of securing and achieving the best out of them.',
     icon: UserRoundCheck,
+    photo: principalMaam,
   },
 ];
 
@@ -57,20 +62,29 @@ export default function AboutStory() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: index * 0.08 }}
-                className='rounded-[28px] border border-slate-100 bg-white p-7 shadow-[0_18px_52px_rgba(15,23,42,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_64px_rgba(20,184,166,0.14)]'
+                className='rounded-[28px] border border-slate-100 bg-white p-7 shadow-[0_18px_52px_rgba(15,23,42,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_64px_rgba(20,184,166,0.14)] flex flex-col gap-4'
               >
-                <div className='mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-light)] text-[var(--primary-dark)]'>
-                  <leader.icon size={25} />
+                <div className='flex flex-col gap-4 mb-4'>
+                  <img 
+                    src={leader.photo} 
+                    alt={leader.name} 
+                    className='w-48 h-48 sm:w-56 sm:h-56 object-cover rounded-[20px] shadow-md border-4 border-slate-50'
+                  />
+                  <div className='flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-light)] text-[var(--primary-dark)]'>
+                    <leader.icon size={22} />
+                  </div>
                 </div>
-                <h3 className='text-[24px] font-extrabold text-[var(--primary-dark)]'>
-                  {leader.name}
-                </h3>
-                <p className='mt-1 text-sm font-bold uppercase tracking-[0.16em] text-[var(--accent)]'>
-                  {leader.role}
-                </p>
-                <p className='mt-4 text-[15px] font-medium leading-7 text-[var(--text-secondary)]'>
-                  {leader.text}
-                </p>
+                <div>
+                  <h3 className='text-[24px] font-extrabold text-[var(--primary-dark)]'>
+                    {leader.name}
+                  </h3>
+                  <p className='mt-1 text-sm font-bold uppercase tracking-[0.16em] text-[var(--accent)]'>
+                    {leader.role}
+                  </p>
+                  <p className='mt-4 text-[15px] font-medium leading-7 text-[var(--text-secondary)]'>
+                    {leader.text}
+                  </p>
+                </div>
               </motion.article>
             ))}
           </div>

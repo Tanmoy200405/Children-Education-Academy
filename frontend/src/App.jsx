@@ -11,6 +11,8 @@ import Careers from "./pages/Careers";
 import NewsEvents from "./pages/NewsEvents";
 import Alumni from "./pages/Alumni";
 import ParentLogin from "./pages/ParentLogin";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
 import SubPage from "./pages/SubPage";
 import "./index.css";
 function App() {
@@ -31,6 +33,8 @@ function App() {
           <Route path="/news" element={<NewsEvents />} />
           <Route path="/alumni" element={<Alumni />} />
           <Route path="/parent-login" element={<ParentLogin />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Routes>
       </main>
     <Footer />

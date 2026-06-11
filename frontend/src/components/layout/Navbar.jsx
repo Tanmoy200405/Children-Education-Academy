@@ -35,20 +35,7 @@ export default function Navbar() {
     { name: "Features", path: "/about/features" },
   ];
 
-  const academicLinks = [
-    { name: "Academic Overview", path: "/academics/overview" },
-    { name: "Curriculum", path: "/academics/curriculum" },
-    { name: "Nursery, LKG & UKG", path: "/academics/junior-section" },
-    { name: "Primary School", path: "/academics/primary-school" },
-    { name: "Middle School", path: "/academics/middle-school" },
-    { name: "Secondary School", path: "/academics/secondary-school" },
-    { name: "Senior Secondary", path: "/academics/senior-secondary" },
-    { name: "Science Stream", path: "/academics/science-stream" },
-    { name: "Commerce Stream", path: "/academics/commerce-stream" },
-    { name: "Humanities Stream", path: "/academics/humanities-stream" },
-    { name: "Co-curricular Activities", path: "/academics/co-curricular" },
-    { name: "Exams & Assessment", path: "/academics/assessment" },
-  ];
+
 
   return (
     <header className="fixed w-full top-0 z-[100] transition-all duration-300">
@@ -107,9 +94,7 @@ export default function Navbar() {
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
                 const isAboutLink = link.name === "About Us";
-                const isAcademicsLink = link.name === "Academics";
                 const isAboutActive = location.pathname === "/about";
-                const isAcademicsActive = location.pathname === "/academics";
 
                 if (isAboutLink) {
                   return (
@@ -131,39 +116,6 @@ export default function Navbar() {
 
                       <div className="pointer-events-none absolute left-0 top-full z-[120] w-[286px] translate-y-3 rounded-[14px] border border-slate-100 bg-white py-4 opacity-0 shadow-[0_24px_70px_rgba(15,23,42,0.14)] transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
                         {aboutLinks.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.path}
-                            className="block px-6 py-3 text-[16px] font-medium text-slate-600 transition-colors duration-200 hover:bg-[#14B8A6]/10 hover:text-[#0A5A63]"
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
-                if (isAcademicsLink) {
-                  return (
-                    <div key={link.name} className="relative group py-4">
-                      <Link
-                        to={link.path}
-                        className={`relative flex items-center gap-1.5 rounded-md px-4 py-3 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
-                          isAcademicsActive
-                            ? 'bg-[#14B8A6]/10 text-[#14B8A6]'
-                            : 'text-[#0A5A63] hover:bg-[#14B8A6]/10 hover:text-[#14B8A6]'
-                        }`}
-                      >
-                        Academics
-                        <ChevronDown
-                          size={16}
-                          className="transition-transform duration-300 group-hover:rotate-180"
-                        />
-                      </Link>
-
-                      <div className="pointer-events-none absolute left-0 top-full z-[120] w-[286px] translate-y-3 rounded-[14px] border border-slate-100 bg-white py-4 opacity-0 shadow-[0_24px_70px_rgba(15,23,42,0.14)] transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-                        {academicLinks.map((item) => (
                           <Link
                             key={item.name}
                             to={item.path}
@@ -250,43 +202,6 @@ export default function Navbar() {
                           className="overflow-hidden pb-2"
                         >
                           {aboutLinks.map((item) => (
-                            <Link
-                              key={item.name}
-                              to={item.path}
-                              className="block border-b border-slate-100 px-4 py-2.5 text-[14px] font-medium text-slate-600 last:border-b-0 hover:bg-[#14B8A6]/10 hover:text-[#0A5A63]"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : link.name === "Academics" ? (
-                  <div key={link.name} className="border-b border-gray-50">
-                    <button
-                      type="button"
-                      className={`flex w-full items-center justify-between py-2 text-left text-[15px] font-semibold ${
-                        location.pathname === "/academics" ? 'text-[#14B8A6]' : 'text-[#0A5A63]'
-                      }`}
-                      onClick={() => setIsMobileAcademicsOpen(!isMobileAcademicsOpen)}
-                    >
-                      Academics
-                      <ChevronDown
-                        size={18}
-                        className={`transition-transform duration-300 ${isMobileAcademicsOpen ? 'rotate-180' : ''}`}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {isMobileAcademicsOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="overflow-hidden pb-2"
-                        >
-                          {academicLinks.map((item) => (
                             <Link
                               key={item.name}
                               to={item.path}

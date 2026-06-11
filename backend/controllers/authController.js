@@ -79,4 +79,28 @@ const getProfile = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getProfile };
+// @desc    Admin login
+// @route   POST /api/auth/admin-login
+// @access  Public
+const adminLogin = async (req, res) => {
+  try {
+    const { password } = req.body;
+    
+    if (password !== process.env.ADMIN_PASSWORD) {
+      return res.status(401).json({ success: false, message: "Invalid admin password" });
+    }
+
+    res.json({
+      success: true,
+      message: "Admin login successful",
+      data: {
+        role: "admin",
+        token: generateToken("admin_id"),
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+module.exports = { register, login, getProfile, adminLogin };
