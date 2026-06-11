@@ -131,8 +131,6 @@ export default function Footer() {
               <a href="#" className="hover:text-cyan-300 transition-colors">Privacy Policy</a>
               <span className="text-white/15 hidden md:inline">|</span>
               <a href="#" className="hover:text-cyan-300 transition-colors">Terms & Conditions</a>
-              <span className="text-white/15 hidden md:inline">|</span>
-              <Link to="/admin-login" className="hover:text-cyan-300 transition-colors">Admin Login</Link>
             </div>
           </div>
         </Container>
