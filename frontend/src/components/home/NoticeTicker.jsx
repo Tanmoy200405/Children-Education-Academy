@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function NoticeTicker() {
-  const [notices, setNotices] = useState([
-    { _id: '1', title: "Admission open for Session 2026-2027. Apply now!" }
-  ]);
+  const [notices, setNotices] = useState([]);
 
   useEffect(() => {
     fetch("https://children-education-academy-s9zd.vercel.app/api/notices")
@@ -17,6 +15,10 @@ export default function NoticeTicker() {
       })
       .catch((err) => console.log("Failed to fetch notices", err));
   }, []);
+
+  if (notices.length === 0) {
+    return null; // Don't show the ticker if there are no notices
+  }
 
   return (
     <div className="bg-[#14B8A6]/10 border-b border-[#14B8A6]/20 py-2">
