@@ -22,7 +22,7 @@ export default function Admissions() {
     e.preventDefault();
     setStatus({ type: "loading", message: "Submitting..." });
     try {
-      const res = await fetch("http://localhost:5000/api/admission", {
+      const res = await fetch("https://children-education-academy-s9zd.vercel.app/api/admission", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

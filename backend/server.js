@@ -30,8 +30,15 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admission", admissionRoutes);
 app.use("/api/notices", noticeRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Backend is running securely on Vercel!");
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+module.exports = app;
+

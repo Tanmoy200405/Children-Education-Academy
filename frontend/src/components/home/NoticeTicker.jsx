@@ -8,7 +8,7 @@ export default function NoticeTicker() {
   ]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/notices")
+    fetch("https://children-education-academy-s9zd.vercel.app/api/notices")
       .then((res) => res.json())
       .then((data) => {
         if (data.success && data.data.length > 0) {

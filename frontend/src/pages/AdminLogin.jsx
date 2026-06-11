@@ -11,7 +11,7 @@ export default function AdminLogin() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/admin-login", {
+      const res = await fetch("https://children-education-academy-s9zd.vercel.app/api/auth/admin-login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),

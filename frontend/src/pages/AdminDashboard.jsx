@@ -21,7 +21,7 @@ export default function AdminDashboard() {
 
   const fetchNotices = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/notices");
+      const res = await fetch("https://children-education-academy-s9zd.vercel.app/api/notices");
       const data = await res.json();
       if (data.success) {
         setNotices(data.data);
@@ -33,7 +33,7 @@ export default function AdminDashboard() {
 
   const fetchAdmissions = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/admission");
+      const res = await fetch("https://children-education-academy-s9zd.vercel.app/api/admission");
       const data = await res.json();
       if (data.success) {
         setAdmissions(data.data);
@@ -46,7 +46,7 @@ export default function AdminDashboard() {
   const handleAddNotice = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/notices", {
+      const res = await fetch("https://children-education-academy-s9zd.vercel.app/api/notices", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title, content }),
@@ -64,7 +64,7 @@ export default function AdminDashboard() {
 
   const handleDeleteNotice = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/notices/${id}`, {
+      const res = await fetch(`https://children-education-academy-s9zd.vercel.app/api/notices/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
