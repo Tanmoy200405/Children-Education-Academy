@@ -1,34 +1,34 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Music, Palette, Trophy, Users } from 'lucide-react';
-import photo8 from '../../assets/photo8.jpg';
-import photo9 from '../../assets/photo9.jpg';
-import photo10 from '../../assets/photo10.jpg';
-import photo11 from '../../assets/photo11.jpg';
+import photo12 from '../../assets/photo12.jpg';
+import photo13 from '../../assets/photo13.jpg';
+import photo19 from '../../assets/photo19.jpg';
+import photo21 from '../../assets/photo21.jpg';
 
 const activities = [
   {
     title: 'Creative Arts',
     desc: 'Art, music, and performance programs that help students express ideas with confidence.',
-    image: photo8,
+    image: photo12,
     icon: Palette,
   },
   {
     title: 'Sports & Fitness',
     desc: 'Structured physical activities that build discipline, teamwork, and healthy habits.',
-    image: photo9,
+    image: photo13,
     icon: Trophy,
   },
   {
     title: 'Clubs & Events',
     desc: 'Student-led clubs and celebrations that create friendships beyond the classroom.',
-    image: photo10,
+    image: photo19,
     icon: Users,
   },
   {
     title: 'Performing Skills',
     desc: 'Stage activities, assemblies, and cultural programs that grow communication skills.',
-    image: photo11,
+    image: photo21,
     icon: Music,
   },
 ];

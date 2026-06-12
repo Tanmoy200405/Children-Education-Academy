@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Atom, Microscope, GraduationCap } from "lucide-react";
+import photo1 from "../../assets/photo1.jpg";
+import photo2 from "../../assets/photo2.jpg";
+import photo3 from "../../assets/photo3.jpg";
 import photo4 from "../../assets/photo4.jpg";
-import photo5 from "../../assets/photo5.jpg";
-import photo6 from "../../assets/photo6.jpg";
-import photo7 from "../../assets/photo7.jpg";
 
 export default function AcademicPrograms() {
   const programs = [
@@ -12,28 +12,28 @@ export default function AcademicPrograms() {
       title: "Primary School",
       tag: "Grades I - V",
       desc: "Nurturing curiosity, foundational skills, and a lifelong love of learning through play and structured instruction.",
-      image: photo4,
+      image: photo1,
       icon: BookOpen,
     },
     {
       title: "Middle School",
       tag: "Grades VI - VIII",
       desc: "Developing analytical thinking, emotional growth, and comprehensive academic skills for transitional success.",
-      image: photo5,
+      image: photo2,
       icon: Atom,
     },
     {
       title: "High School",
       tag: "Grades IX - X",
       desc: "Fostering leadership, advanced academic disciplines, and collaborative problem-solving skills.",
-      image: photo6,
+      image: photo3,
       icon: Microscope,
     },
     {
       title: "Senior Secondary",
       tag: "Grades XI - XII",
       desc: "Specialized instruction preparing students for elite global universities and future professional careers.",
-      image: photo7,
+      image: photo4,
       icon: GraduationCap,
     }
   ];

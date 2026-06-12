@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Container from "../components/common/Container";
 import photo12 from "../assets/photo12.jpg";
 import photo13 from "../assets/photo13.jpg";
@@ -7,14 +8,20 @@ import photo17 from "../assets/photo17.jpg";
 import photo18 from "../assets/photo18.jpg";
 
 export default function Gallery() {
+  const [activeTab, setActiveTab] = useState("All");
+
   const images = [
-    { src: photo12, category: "Campus" },
-    { src: photo13, category: "Classrooms" },
-    { src: photo15, category: "Events" },
+    { src: photo12, category: "Learning" },
+    { src: photo13, category: "Learning" },
+    { src: photo15, category: "Culture" },
     { src: photo16, category: "Sports" },
-    { src: photo17, category: "Events" },
-    { src: photo18, category: "Campus" },
+    { src: photo17, category: "Culture" },
+    { src: photo18, category: "Sports" },
   ];
+
+  const categories = ["All", "Learning", "Sports", "Culture"];
+
+  const filteredImages = activeTab === "All" ? images : images.filter(img => img.category === activeTab);
 
   return (
     <div className="pt-[100px] pb-20">
@@ -30,9 +37,25 @@ export default function Gallery() {
         </Container>
       </section>
 
-      <Container className="mt-20">
+      <Container className="mt-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveTab(category)}
+              className={`px-6 py-2 rounded-full font-medium transition-colors duration-300 ${
+                activeTab === category
+                  ? "bg-[#0A5A63] text-white"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {images.map((img, idx) => (
+          {filteredImages.map((img, idx) => (
             <div key={idx} className="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 aspect-[4/3]">
               <img 
                 src={img.src} 

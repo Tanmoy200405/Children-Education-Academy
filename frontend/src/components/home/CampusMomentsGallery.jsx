@@ -1,28 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { X } from 'lucide-react';
-import photo12 from '../../assets/photo12.jpg';
-import photo13 from '../../assets/photo13.jpg';
-import photo15 from '../../assets/photo15.jpg';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import photo3 from '../../assets/photo3.jpg';
+import photo6 from '../../assets/photo6.jpg';
+import photo4 from '../../assets/photo4.jpg';
 import photo16 from '../../assets/photo16.jpg';
-import photo17 from '../../assets/photo17.jpg';
-import photo18 from '../../assets/photo18.jpg';
-import photo19 from '../../assets/photo19.jpg';
-import photo20 from '../../assets/photo20.jpg';
+import photo1 from '../../assets/photo1.jpg';
+import photo2 from '../../assets/photo2.jpg';
 
 const photos = [
-  { src: photo12, alt: 'Campus moment 1', span: 'md:row-span-2' },
-  { src: photo13, alt: 'Campus moment 2', span: '' },
-  { src: photo15, alt: 'Campus moment 3', span: '' },
-  { src: photo16, alt: 'Campus moment 4', span: 'md:row-span-2' },
-  { src: photo17, alt: 'Campus moment 5', span: '' },
-  { src: photo18, alt: 'Campus moment 6', span: '' },
-  { src: photo19, alt: 'Campus moment 7', span: '' },
-  { src: photo20, alt: 'Campus moment 8', span: '' },
+  { src: photo3, alt: 'Campus moment 1' },
+  { src: photo6, alt: 'Campus moment 2' },
+  { src: photo4, alt: 'Campus moment 3' },
+  { src: photo16, alt: 'Campus moment 4' },
+  { src: photo1, alt: 'Campus moment 5' },
+  { src: photo2, alt: 'Campus moment 6' },
 ];
 
 export default function CampusMomentsGallery() {
-  const [activePhoto, setActivePhoto] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    }, 4000); // Auto slide every 4 seconds
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+  };
 
   return (
     <section className='bg-white py-16 sm:py-20 lg:py-24'>
@@ -41,58 +52,52 @@ export default function CampusMomentsGallery() {
           </p>
         </div>
 
-        <div className='grid auto-rows-[190px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4'>
-          {photos.map((photo, index) => (
-            <motion.button
-              key={photo.src}
-              type='button'
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.04 }}
-              onClick={() => setActivePhoto(photo)}
-              className={`group relative overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_14px_40px_rgba(15,23,42,0.08)] ${photo.span}`}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.08]'
+        <div className='relative w-full max-w-5xl mx-auto aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_14px_40px_rgba(15,23,42,0.08)] group'>
+          <AnimatePresence mode='wait'>
+            <motion.img
+              key={currentIndex}
+              src={photos[currentIndex].src}
+              alt={photos[currentIndex].alt}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className='absolute inset-0 h-full w-full object-cover'
+            />
+          </AnimatePresence>
+
+          {/* Navigation Controls */}
+          <button
+            onClick={handlePrev}
+            className='absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-3 text-[var(--primary-dark)] backdrop-blur-sm transition-all hover:bg-white hover:scale-110 shadow-lg opacity-0 group-hover:opacity-100 duration-300'
+            aria-label="Previous slide"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          
+          <button
+            onClick={handleNext}
+            className='absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-3 text-[var(--primary-dark)] backdrop-blur-sm transition-all hover:bg-white hover:scale-110 shadow-lg opacity-0 group-hover:opacity-100 duration-300'
+            aria-label="Next slide"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Indicators */}
+          <div className='absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-3 z-10'>
+            {photos.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                aria-label={`Go to slide ${index + 1}`}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  currentIndex === index ? 'w-8 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/80'
+                }`}
               />
-              <div className='absolute inset-0 bg-[var(--primary-dark)]/0 transition-colors duration-300 group-hover:bg-[var(--primary-dark)]/18' />
-            </motion.button>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-
-      <AnimatePresence>
-        {activePhoto && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className='fixed inset-0 z-[200] flex items-center justify-center bg-black/75 p-5 backdrop-blur-sm'
-            onClick={() => setActivePhoto(null)}
-          >
-            <button
-              type='button'
-              aria-label='Close gallery image'
-              className='absolute right-5 top-5 rounded-full bg-white p-3 text-[var(--primary-dark)] shadow-lg'
-              onClick={() => setActivePhoto(null)}
-            >
-              <X size={22} />
-            </button>
-            <motion.img
-              src={activePhoto.src}
-              alt={activePhoto.alt}
-              initial={{ scale: 0.94, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.94, opacity: 0 }}
-              className='max-h-[86vh] max-w-[92vw] rounded-[24px] object-contain shadow-2xl'
-              onClick={(event) => event.stopPropagation()}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

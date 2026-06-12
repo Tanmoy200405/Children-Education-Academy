@@ -6,7 +6,6 @@ import WhyParentsChooseUs from "../components/home/WhyParentsChooseUs";
 import CampusMomentsGallery from "../components/home/CampusMomentsGallery";
 import Testimonials from "../components/home/Testimonials";
 import AdmissionsCTA from "../components/home/AdmissionsCTA";
-import LatestNewsEvents from "../components/home/LatestNewsEvents";
 
 export default function Home() {
   return (
@@ -19,8 +18,6 @@ export default function Home() {
       <CampusMomentsGallery />
       <Testimonials />
       <AdmissionsCTA />
-      <LatestNewsEvents />
-      
     </>
   );
 }
