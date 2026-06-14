@@ -14,11 +14,34 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to database
-mongoose
-  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/children_education_academy")
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+// Database connection optimization for Vercel Serverless
+let isConnected = false;
+
+const connectDB = async () => {
+  if (isConnected) {
+    console.log("Using existing database connection");
+    return;
+  }
+  
+  if (!process.env.MONGO_URI) {
+    console.error("FATAL ERROR: MONGO_URI is not defined in environment variables.");
+    process.exit(1);
+  }
+
+  try {
+    const db = await mongoose.connect(process.env.MONGO_URI);
+    isConnected = db.connections[0].readyState;
+    console.log("MongoDB connected successfully via Vercel Env");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+  }
+};
+
+// Middleware to ensure DB connection before handling routes
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
 
 // Routes
