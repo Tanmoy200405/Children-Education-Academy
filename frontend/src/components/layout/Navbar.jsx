@@ -23,6 +23,7 @@ export default function Navbar() {
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
     { name: "Academics", path: "/academics" },
+    { name: "News & Events", path: "/news" },
     { name: "Gallery", path: "/gallery" },
     { name: "Admissions", path: "/admissions" },
     { name: "Contact Us", path: "/contact" },
@@ -89,8 +90,8 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation - Centered & Balanced */}
-          <div className="hidden lg:flex items-center justify-center flex-1 px-4 xl:px-8">
-            <div className="flex items-center gap-6 xl:gap-8">
+          <div className="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4">
+            <div className="flex items-center gap-2 xl:gap-5">
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
                 const isAboutLink = link.name === "About Us";
@@ -101,7 +102,7 @@ export default function Navbar() {
                     <div key={link.name} className="relative group py-4">
                       <Link
                         to={link.path}
-                        className={`relative flex items-center gap-1.5 rounded-md px-4 py-3 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
+                        className={`relative flex items-center gap-1 whitespace-nowrap rounded-md px-2 xl:px-3 py-2 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
                           isAboutActive
                             ? 'bg-[#14B8A6]/10 text-[#14B8A6]'
                             : 'text-[#0A5A63] hover:bg-[#14B8A6]/10 hover:text-[#14B8A6]'
@@ -133,7 +134,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`relative rounded-md px-4 py-3 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
+                    className={`relative whitespace-nowrap rounded-md px-2 xl:px-3 py-2 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
                       isActive
                         ? 'bg-[#14B8A6]/10 text-[#14B8A6]'
                         : 'text-[#0A5A63] hover:bg-[#14B8A6]/10 hover:text-[#14B8A6]'
@@ -176,7 +177,7 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <div className="px-6 py-4 flex flex-col gap-4 overflow-y-auto max-h-[calc(100vh-80px)]">
               {navLinks.map((link) => (
                 link.name === "About Us" ? (
                   <div key={link.name} className="border-b border-gray-50">

@@ -21,7 +21,7 @@ export default function NoticeTicker() {
   }
 
   return (
-    <div className="bg-[#14B8A6]/10 border-b border-[#14B8A6]/20 py-2">
+    <Link to="/news" className="block bg-[#14B8A6]/10 border-b border-[#14B8A6]/20 py-2 hover:bg-[#14B8A6]/20 transition-colors cursor-pointer">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex items-center">
         {/* Notice Badge */}
         <div className="bg-[#14B8A6] text-white px-4 py-1.5 rounded-md font-bold text-sm flex items-center gap-2 shrink-0 z-10 shadow-sm">
@@ -35,12 +35,12 @@ export default function NoticeTicker() {
             {notices.map((notice, idx) => (
               <span key={idx} className="text-[#0A5A63] font-medium text-[15px] flex items-center gap-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] inline-block"></span>
-                <Link to="/news" className="hover:text-[#14B8A6] transition-colors">{notice.title}</Link>
+                <span className="hover:text-[#14B8A6] transition-colors">{notice.title}</span>
               </span>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
