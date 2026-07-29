@@ -1,25 +1,21 @@
 import { useState } from "react";
 import Container from "../components/common/Container";
-import photo12 from "../assets/photo12.jpg";
-import photo13 from "../assets/photo13.jpg";
-import photo15 from "../assets/photo15.jpg";
-import photo16 from "../assets/photo16.jpg";
-import photo17 from "../assets/photo17.jpg";
-import photo18 from "../assets/photo18.jpg";
+
+// Dynamically import all images from the assets directory
+const imageModules = import.meta.glob('../assets/*.{jpg,jpeg,png}', { eager: true, import: 'default' });
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState("All");
 
-  const images = [
-    { src: photo12, category: "Learning" },
-    { src: photo13, category: "Learning" },
-    { src: photo15, category: "Culture" },
-    { src: photo16, category: "Sports" },
-    { src: photo17, category: "Culture" },
-    { src: photo18, category: "Sports" },
-  ];
+  const categories = ["Learning", "Sports", "Culture"];
+  
+  // Map the imported images into our expected format, distributing them across categories
+  const images = Object.values(imageModules).map((src, idx) => ({
+    src,
+    category: categories[idx % categories.length]
+  }));
 
-  const categories = ["All", "Learning", "Sports", "Culture"];
+  const allCategories = ["All", ...categories];
 
   const filteredImages = activeTab === "All" ? images : images.filter(img => img.category === activeTab);
 
@@ -39,7 +35,7 @@ export default function Gallery() {
 
       <Container className="mt-12">
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {allCategories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveTab(category)}
