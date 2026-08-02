@@ -8,6 +8,7 @@ const leaders = [
   {
     name: 'Mr. S. Yaser Ahmed',
     role: 'President and Founder Principal',
+    qualifications: ['B.com, MBA (LONDON)', 'D.EL.ED'],
     text: 'He is committed to promoting academic excellence, innovation and value-based learning essential for today’s modern life.',
     icon: Award,
     photo: principalSir,
@@ -15,6 +16,7 @@ const leaders = [
   {
     name: 'Mrs. Sufia Naaz',
     role: 'Co-Founder and Vice-Principal',
+    qualifications: ['B.Com, M.COM', 'B.A. LLB', 'D.EL.ED'],
     text: 'An expert in education with over 15 years of experience. Her mentorship, inspiration, and motivation provide our students with a great platform. She infuses children with the target of securing and achieving the best out of them.',
     icon: UserRoundCheck,
     photo: principalMaam,
@@ -81,6 +83,17 @@ export default function AboutStory() {
                   <p className='mt-1 text-sm font-bold uppercase tracking-[0.16em] text-[var(--accent)]'>
                     {leader.role}
                   </p>
+                  
+                  {leader.qualifications && (
+                    <div className='mt-3 flex flex-wrap gap-2'>
+                      {leader.qualifications.map((qual, i) => (
+                        <span key={i} className='inline-flex items-center rounded-md border border-[var(--primary)]/20 bg-[var(--primary)]/5 px-2.5 py-1 text-[13px] font-semibold text-[var(--primary-dark)]'>
+                          {qual}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
                   <p className='mt-4 text-[15px] font-medium leading-7 text-[var(--text-secondary)]'>
                     {leader.text}
                   </p>

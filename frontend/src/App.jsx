@@ -16,6 +16,7 @@ import ParentLogin from "./pages/ParentLogin";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import SubPage from "./pages/SubPage";
+import StudentCreationsPage from "./pages/StudentCreationsPage";
 import Loader from "./components/common/Loader";
 import "./index.css";
 
@@ -45,6 +46,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/about/:id" element={<SubPage />} />
               <Route path="/academics" element={<Academics />} />
+              <Route path="/academics/student-creations" element={<StudentCreationsPage />} />
               <Route path="/academics/:id" element={<SubPage />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/admissions" element={<Admissions />} />

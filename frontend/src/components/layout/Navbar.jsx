@@ -36,6 +36,11 @@ export default function Navbar() {
     { name: "Features", path: "/about/features" },
   ];
 
+  const academicsLinks = [
+    { name: "Academic Programs", path: "/academics" },
+    { name: "Student Creations", path: "/academics/student-creations" },
+  ];
+
 
 
   return (
@@ -95,20 +100,27 @@ export default function Navbar() {
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
                 const isAboutLink = link.name === "About Us";
-                const isAboutActive = location.pathname === "/about";
+                const isAboutActive = location.pathname.startsWith("/about");
+                const isAcademicsLink = link.name === "Academics";
+                const isAcademicsActive = location.pathname.startsWith("/academics");
 
-                if (isAboutLink) {
+                if (isAboutLink || isAcademicsLink) {
+                  const linksList = isAboutLink ? aboutLinks : academicsLinks;
+                  const isActiveNav = isAboutLink ? isAboutActive : isAcademicsActive;
+                  const label = isAboutLink ? "About" : "Academics";
+                  const mainPath = isAboutLink ? "/about" : "/academics";
+
                   return (
                     <div key={link.name} className="relative group py-4">
                       <Link
-                        to={link.path}
+                        to={mainPath}
                         className={`relative flex items-center gap-1 whitespace-nowrap rounded-md px-2 xl:px-3 py-2 font-semibold text-[14px] tracking-wide transition-all duration-300 ${
-                          isAboutActive
+                          isActiveNav
                             ? 'bg-[#14B8A6]/10 text-[#14B8A6]'
                             : 'text-[#0A5A63] hover:bg-[#14B8A6]/10 hover:text-[#14B8A6]'
                         }`}
                       >
-                        About
+                        {label}
                         <ChevronDown
                           size={16}
                           className="transition-transform duration-300 group-hover:rotate-180"
@@ -116,7 +128,7 @@ export default function Navbar() {
                       </Link>
 
                       <div className="pointer-events-none absolute left-0 top-full z-[120] w-[286px] translate-y-3 rounded-[14px] border border-slate-100 bg-white py-4 opacity-0 shadow-[0_24px_70px_rgba(15,23,42,0.14)] transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
-                        {aboutLinks.map((item) => (
+                        {linksList.map((item) => (
                           <Link
                             key={item.name}
                             to={item.path}
@@ -178,45 +190,58 @@ export default function Navbar() {
             className="lg:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden"
           >
             <div className="px-6 py-4 flex flex-col gap-4 overflow-y-auto max-h-[calc(100vh-80px)]">
-              {navLinks.map((link) => (
-                link.name === "About Us" ? (
-                  <div key={link.name} className="border-b border-gray-50">
-                    <button
-                      type="button"
-                      className={`flex w-full items-center justify-between py-2 text-left text-[15px] font-semibold ${
-                        location.pathname === "/about" ? 'text-[#14B8A6]' : 'text-[#0A5A63]'
-                      }`}
-                      onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
-                    >
-                      About
-                      <ChevronDown
-                        size={18}
-                        className={`transition-transform duration-300 ${isMobileAboutOpen ? 'rotate-180' : ''}`}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {isMobileAboutOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="overflow-hidden pb-2"
-                        >
-                          {aboutLinks.map((item) => (
-                            <Link
-                              key={item.name}
-                              to={item.path}
-                              className="block border-b border-slate-100 px-4 py-2.5 text-[14px] font-medium text-slate-600 last:border-b-0 hover:bg-[#14B8A6]/10 hover:text-[#0A5A63]"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
+              {navLinks.map((link) => {
+                const isDropdownLink = link.name === "About Us" || link.name === "Academics";
+                
+                if (isDropdownLink) {
+                  const isAbout = link.name === "About Us";
+                  const linksList = isAbout ? aboutLinks : academicsLinks;
+                  const isOpen = isAbout ? isMobileAboutOpen : isMobileAcademicsOpen;
+                  const setIsOpen = isAbout ? setIsMobileAboutOpen : setIsMobileAcademicsOpen;
+                  const isActive = location.pathname.startsWith(isAbout ? "/about" : "/academics");
+                  const label = isAbout ? "About" : "Academics";
+
+                  return (
+                    <div key={link.name} className="border-b border-gray-50">
+                      <button
+                        type="button"
+                        className={`flex w-full items-center justify-between py-2 text-left text-[15px] font-semibold ${
+                          isActive ? 'text-[#14B8A6]' : 'text-[#0A5A63]'
+                        }`}
+                        onClick={() => setIsOpen(!isOpen)}
+                      >
+                        {label}
+                        <ChevronDown
+                          size={18}
+                          className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="overflow-hidden pb-2"
+                          >
+                            {linksList.map((item) => (
+                              <Link
+                                key={item.name}
+                                to={item.path}
+                                className="block border-b border-slate-100 px-4 py-2.5 text-[14px] font-medium text-slate-600 last:border-b-0 hover:bg-[#14B8A6]/10 hover:text-[#0A5A63]"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+
+                return (
                   <Link
                     key={link.name}
                     to={link.path}
@@ -227,8 +252,8 @@ export default function Navbar() {
                   >
                     {link.name}
                   </Link>
-                )
-              ))}
+                );
+              })}
               <div className="pt-2 pb-4 flex flex-col gap-4">
                 <Link to="/admissions" onClick={() => setIsMobileMenuOpen(false)} className="w-full cursor-pointer py-3 rounded-full border-2 border-[#14B8A6] text-[#14B8A6] font-semibold text-[15px] flex items-center justify-center gap-2 hover:bg-[#14B8A6] hover:text-white transition-colors group">
                   Admission Enquiry
